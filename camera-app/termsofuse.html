@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use | GPS Map Camera: Stamp & Geo</title>
+  <meta name="description" content="Terms of Use and End User License Agreement for GPS Map Camera: Stamp & Geo. Conditions regarding subscriptions, camera usage, and licensing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --surface: rgba(18, 20, 29, 0.7);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --surface-hover: rgba(28, 32, 48, 0.85);
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      --accent: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --card-radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .glow-1 {
+      top: -100px;
+      left: -100px;
+      background: var(--primary);
+    }
+    .glow-2 {
+      bottom: 10%;
+      right: -100px;
+      background: var(--accent);
+    }
+
+    /* Navigation Bar */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(9, 10, 15, 0.8);
+      border-bottom: 1px solid var(--surface-border);
+      z-index: 100;
+      padding: 1.1rem 2rem;
+    }
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-badge {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+    }
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Page Container */
+    .container {
+      max-width: 900px;
+      margin: 3.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .doc-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 1.8rem;
+    }
+    .app-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 0.8rem;
+    }
+    .effective-date {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Highlight Summary Box */
+    .summary-box {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .summary-box p {
+      color: var(--text-main);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    /* Document Sections */
+    .terms-content section {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--card-radius);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(16px);
+    }
+    .terms-content h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .terms-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.1rem;
+    }
+    .terms-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* List items */
+    ul {
+      list-style-type: disc;
+      padding-left: 1.4rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.6rem;
+      font-size: 0.96rem;
+    }
+
+    /* Contact & Legal Callout */
+    .contact-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-top: 1rem;
+    }
+    .contact-card strong {
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 900px;
+      margin: 4rem auto 0;
+      padding: 2rem 1.5rem 0;
+      border-top: 1px solid var(--surface-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .terms-content section {
+        padding: 1.5rem;
+      }
+      header {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <span class="logo-badge"></span>
+        Darshan Patel
+      </a>
+      <a href="/" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="doc-header">
+      <div class="app-tag">📷 GPS Map Camera: Stamp & Geo</div>
+      <h1>Terms of Use</h1>
+      <div class="effective-date">Last Updated: October 2026</div>
+    </div>
+
+    <div class="summary-box">
+      <p>
+        <strong>Notice:</strong> By downloading, installing, or accessing <em>GPS Map Camera: Stamp & Geo</em>, you agree to be bound by these Terms of Use and the Apple Standard End User License Agreement (EULA). If you disagree with any portion of these terms, please discontinue using the application.
+      </p>
+    </div>
+
+    <div class="terms-content">
+
+      <!-- Section 1: Agreement & License -->
+      <section>
+        <h2>1. Scope of License</h2>
+        <p>
+          We grant you a personal, revocable, non-exclusive, non-transferable, limited license to download, install, and use <strong>GPS Map Camera: Stamp & Geo</strong> ("the Application") on iOS devices that you own or control, strictly subject to the Apple Media Services Terms and Conditions and these Terms.
+        </p>
+        <p>
+          You agree not to modify, reverse engineer, decompile, disassemble, or extract the source code or layout templates of the Application. All intellectual property, UI/UX designs, and stamp template assets remain the exclusive property of the developer.
+        </p>
+      </section>
+
+      <!-- Section 2: Camera, Geolocation & Audio Usage -->
+      <section>
+        <h2>2. Responsible Device & Sensor Usage</h2>
+        <p>
+          The Application utilizes camera hardware, microphone recording, GPS location sensors, and photo library access to stamp real-time coordinates, dates, and maps onto media files:
+        </p>
+        <ul>
+          <li><strong>Lawful Photography:</strong> You agree not to use the camera or microphone features to record, photograph, or capture any individual or private property without necessary consent or in violation of local privacy and surveillance laws.</li>
+          <li><strong>Accuracy of Geographical Data:</strong> Coordinates, altitudes, reverse-geocoded addresses, and map stamps rendered by the Application depend on iOS CoreLocation services, hardware sensor reception, and cellular/satellite accuracy. The Application is provided for convenience and personal documentation, and should not be relied upon for critical maritime navigation, life-critical missions, surveying certification, or emergency operations.</li>
+          <li><strong>Local Storage:</strong> All media stamped by the app is saved to your personal camera roll. You are solely responsible for managing device storage space and backing up your media files.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3: In-App Purchases & Subscriptions -->
+      <section>
+        <h2>3. In-App Purchases and Auto-Renewing Subscriptions</h2>
+        <p>
+          Certain features of the Application (such as unlimited high-resolution video exports, premium stamp presets, custom logos, and ad-free usage) may require an active in-app purchase or recurring subscription.
+        </p>
+        <ul>
+          <li><strong>Payment & Billing:</strong> Payments are charged to your Apple ID account at confirmation of purchase. Billing is managed entirely by Apple Inc. via the App Store.</li>
+          <li><strong>Auto-Renewal:</strong> Subscriptions automatically renew unless auto-renew is cancelled at least 24 hours before the end of the current billing cycle. Your account will be charged for renewal within 24 hours prior to the close of the current period at the original purchase price.</li>
+          <li><strong>Managing Subscriptions:</strong> You can manage or disable auto-renewal at any time by navigating to your <strong>Apple ID Account Settings &gt; Subscriptions</strong> on your device after purchase.</li>
+          <li><strong>Free Trials:</strong> If offered, any unused portion of a free trial period will be forfeited when you purchase a subscription, where applicable.</li>
+          <li><strong>Refunds:</strong> All purchases and refunds are processed solely in accordance with Apple Media Services policies. We do not have direct access to your payment methods or transaction records.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Advertising -->
+      <section>
+        <h2>4. Advertisements & Third-Party Content</h2>
+        <p>
+          The free edition of the Application displays advertisements supplied by third-party advertising partners (including Google AdMob). Advertisements may include banners, interstitials, and rewarded video formats. 
+        </p>
+        <p>
+          We do not endorse, guarantee, or assume liability for third-party products, services, or websites advertised within the app. Interacting with third-party promotional material is solely at your own discretion and risk.
+        </p>
+      </section>
+
+      <!-- Section 5: Disclaimer of Warranties -->
+      <section>
+        <h2>5. Disclaimer of Warranties ("AS IS")</h2>
+        <p>
+          The Application is provided to you on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis, without warranties or representations of any kind, whether express, statutory, or implied.
+        </p>
+        <p>
+          To the maximum extent permissible under applicable law, we disclaim all warranties, including merchantability, fitness for a particular purpose, non-infringement, continuous uptime, and absolute accuracy of GPS stamps, timestamps, or geocoding tags.
+        </p>
+      </section>
+
+      <!-- Section 6: Limitation of Liability -->
+      <section>
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          To the extent not prohibited by applicable law, in no event shall the developer be liable for personal injury, property damage, data corruption, lost profits, device malfunction, or any incidental, consequential, or indirect damages arising out of your use or inability to use the Application, however caused.
+        </p>
+      </section>
+
+      <!-- Section 7: Governing Law & Apple Standard EULA -->
+      <section>
+        <h2>7. Governing Terms & Apple EULA</h2>
+        <p>
+          These Terms are supplemented by the standard Apple Licensed Application End User License Agreement (EULA) provided by Apple Inc., available at:
+          <br>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" style="color: var(--accent);">Apple Standard EULA Agreement</a>.
+        </p>
+        <p>
+          In the event of any conflict between these Terms and the Apple Standard EULA, these Terms shall control to the extent of such conflict.
+        </p>
+      </section>
+
+      <!-- Section 8: Contact Information -->
+      <section>
+        <h2>8. Contact & Legal Inquiries</h2>
+        <p>
+          For questions, technical support, or inquiries regarding these Terms of Use, please contact:
+        </p>
+        <div class="contact-card">
+          <strong>Darshan Patel</strong>
+          Independent iOS Developer Studio<br>
+          Surat, Gujarat &bull; 395002, India<br>
+          Email: <a href="mailto:darshanpatel.dev@gmail.com">darshanpatel.dev@gmail.com</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 GPS Map Camera: Stamp & Geo. All rights reserved.</div>
+    <div>
+      <a href="/camera-app/privacy.html">Privacy Policy</a> &bull;
+      <a href="/">Developer Home</a>
+    </div>
+  </footer>
+
+</body>
+</html>
