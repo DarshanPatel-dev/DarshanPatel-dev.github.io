@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darshan Patel | iOS App Developer & Ad Monetization Specialist</title>
+  <meta name="description" content="Portfolio of Darshan Patel - Independent iOS Developer & Ad Monetization Specialist based in Surat, Gujarat. High-performance Swift apps, AdMob optimization, and app-ads.txt compliance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 33, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 38, 56, 0.85);
+      --accent-cyan: #06b6d4;
+      --accent-violet: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-emerald: #10b981;
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* Ambient Glow & Canvas */
+    #ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-sphere {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatPulse 12s ease-in-out infinite alternate;
+    }
+
+    .glow-1 {
+      top: -10%;
+      left: 15%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-violet) 0%, transparent 70%);
+    }
+
+    .glow-2 {
+      top: 35%;
+      right: 5%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      animation-delay: -4s;
+    }
+
+    .glow-3 {
+      bottom: 10%;
+      left: 10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+      animation-delay: -8s;
+    }
+
+    @keyframes floatPulse {
+      0% { transform: scale(0.9) translate(0, 0); }
+      50% { transform: scale(1.15) translate(30px, -20px); }
+      100% { transform: scale(0.95) translate(-20px, 25px); }
+    }
+
+    /* Layout Wrapper */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Header Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(7, 9, 14, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      padding: 0.55rem 1.15rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff !important;
+      transition: all 0.25s ease;
+    }
+
+    .nav-cta:hover {
+      background: #fff;
+      color: #000 !important;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    }
+
+    /* Buttons & Pills */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.65rem;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+      color: #fff;
+      box-shadow: 0 4px 25px rgba(59, 130, 246, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #f1f5f9;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 9999px;
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-pill .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.4); }
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 6.5rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4.3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      margin-bottom: 1.5rem;
+      max-width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 10%, #818cf8 50%, #c084fc 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+    }
+
+    .stat-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Infinite Marquee */
+    .marquee-container {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: hidden;
+      padding: 2.5rem 0 1rem;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 1rem;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-track-reverse {
+      animation: marqueeScrollReverse 36s linear infinite;
+      margin-top: 1rem;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .marquee-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.4rem;
+      background: rgba(18, 22, 33, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 9999px;
+      color: #e2e8f0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .marquee-pill:hover {
+      background: rgba(30, 38, 56, 0.95);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      transform: scale(1.05);
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes marqueeScrollReverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Section Styling */
+    section {
+      padding: 5rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-description {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Glass Cards Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.25rem 1.75rem;
+      backdrop-filter: blur(14px);
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      background: var(--card-hover);
+      border-color: rgba(139, 92, 246, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .service-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+
+    .service-desc {
+      color: var(--text-muted);
+      font-size: 0.925rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .mini-badge {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.25rem 0.6rem;
+      border-radius: 8px;
+      color: #cbd5e1;
+    }
+
+    /* iOS App Showcase */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .app-preview-header {
+      padding: 2.25rem 2rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+    }
+
+    .app-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .app-meta h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+
+    .app-category {
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .app-body {
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .app-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .app-specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .spec-title {
+      font-size: 0.725rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-val {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .app-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .app-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.15rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .app-link-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(3px);
+    }
+
+    /* Ad Compliance & Legal Hub */
+    .compliance-box {
+      background: linear-gradient(135deg, rgba(14, 20, 33, 0.8) 0%, rgba(20, 16, 38, 0.8) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .compliance-box::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .compliance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+
+    .compliance-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+
+    .compliance-card:hover {
+      border-color: var(--accent-emerald);
+      transform: translateY(-3px);
+    }
+
+    .compliance-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.775rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      margin-bottom: 0.75rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .code-preview {
+      background: #0b0f19;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      overflow-x: auto;
+      margin: 0.75rem 0 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    /* Location & Surat Studio Info */
+    .location-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 3rem;
+      backdrop-filter: blur(14px);
+    }
+
+    .location-details h3 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .location-details p {
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      font-size: 1rem;
+    }
+
+    .address-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .address-pin {
+      font-size: 1.5rem;
+      color: #ef4444;
+      line-height: 1;
+    }
+
+    .address-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .contact-chip:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Contact Form / Quick Inquiry */
+    .inquiry-card {
+      background: rgba(12, 16, 26, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 2rem;
+    }
+
+    .inquiry-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 0;
+      margin-top: 5rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      background: rgba(5, 7, 10, 0.9);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* Scroll reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Toast Notification for Interactive Copies */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(18, 22, 33, 0.95);
+      border: 1px solid var(--accent-emerald);
+      color: #fff;
+      padding: 0.85rem 1.4rem;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      z-index: 100;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .location-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Light Fields -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="glow-sphere glow-1"></div>
+  <div class="glow-sphere glow-2"></div>
+  <div class="glow-sphere glow-3"></div>
+
+  <!-- Sticky Navbar -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo-container">
+          <div class="logo-badge">D</div>
+          <div>
+            <div class="logo-text">Darshan Patel</div>
+            <div style="font-size: 0.725rem; color: var(--accent-cyan); font-weight: 600; letter-spacing: 0.05em;">STUDIO &bull; SURAT</div>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#services">Capabilities</a></li>
+          <li><a href="#apps">iOS Apps</a></li>
+          <li><a href="#compliance">app-ads.txt & Legal</a></li>
+          <li><a href="#location">Surat Studio</a></li>
+          <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="badge-pill reveal">
+        <span class="pulse-dot"></span>
+        Independent iOS Engineer &amp; Ad Monetization Architect
+      </div>
+
+      <h1 class="hero-title reveal">
+        Engineering High-Impact <span class="gradient-text">iOS Apps</span> &amp; Maximizing <span class="gradient-text">Ad Revenue</span>.
+      </h1>
+
+      <p class="hero-subtitle reveal">
+        Building performance-driven native Swift apps, optimizing Google AdMob mediation, and managing zero-downtime compliance architectures from Surat, Gujarat to global App Stores.
+      </p>
+
+      <div class="hero-cta-group reveal">
+        <a href="#apps" class="btn btn-primary">
+          <span>Explore iOS Showcase</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <a href="/app-ads.txt" class="btn btn-secondary" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Verify app-ads.txt</span>
+        </a>
+        <a href="#compliance" class="btn btn-secondary">
+          <span>Legal &amp; Privacy Hub</span>
+        </a>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">AdMob &amp; SDK Uptime</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Store &amp; IAB Compliance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Native</div>
+          <div class="stat-label">Swift &amp; SwiftUI Performance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">Global</div>
+          <div class="stat-label">Worldwide Ad Mediation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dual Infinite Auto-Scrolling Marquee -->
+  <div class="marquee-container">
+    <div class="marquee-track" id="track1">
+      <div class="marquee-pill">⚡ SwiftUI &amp; UIKit</div>
+      <div class="marquee-pill">🎯 Google AdMob Bidding</div>
+      <div class="marquee-pill">🛡️ app-ads.txt Authorized</div>
+      <div class="marquee-pill">📈 eCPM Floor Optimization</div>
+      <div class="marquee-pill">🍏 App Store Connect API</div>
+      <div class="marquee-pill">💎 Rewarded &amp; Native Ads</div>
+      <div class="marquee-pill">🔒 SKAdNetwork &amp; ATT Ready</div>
+      <div class="marquee-pill">🚀 RevenueCat Subscriptions</div>
+      <div class="marquee-pill">⚡ SwiftUI &amp; UIKit</div>
+      <div class="marquee-pill">🎯 Google AdMob Bidding</div>
+      <div class="marquee-pill">🛡️ app-ads.txt Authorized</div>
+      <div class="marquee-pill">📈 eCPM Floor Optimization</div>
+      <div class="marquee-pill">🍏 App Store Connect API</div>
+      <div class="marquee-pill">💎 Rewarded &amp; Native Ads</div>
+      <div class="marquee-pill">🔒 SKAdNetwork &amp; ATT Ready</div>
+      <div class="marquee-pill">🚀 RevenueCat Subscriptions</div>
+    </div>
+
+    <div class="marquee-track marquee-track-reverse" id="track2">
+      <div class="marquee-pill">📍 Surat Tech Hub, Gujarat</div>
+      <div class="marquee-pill">📜 GDPR / CCPA Consent CMP</div>
+      <div class="marquee-pill">☁️ GitHub Pages Legal Host</div>
+      <div class="marquee-pill">📊 Core ML On-Device AI</div>
+      <div class="marquee-pill">🔍 ASO Keyword Strategy</div>
+      <div class="marquee-pill">📱 iOS 17 &amp; iOS 18 Optimized</div>
+      <div class="marquee-pill">🛡️ Zero-Latency Policy Delivery</div>
+      <div class="marquee-pill">📍 Surat Tech Hub, Gujarat</div>
+      <div class="marquee-pill">📜 GDPR / CCPA Consent CMP</div>
+      <div class="marquee-pill">☁️ GitHub Pages Legal Host</div>
+      <div class="marquee-pill">📊 Core ML On-Device AI</div>
+      <div class="marquee-pill">🔍 ASO Keyword Strategy</div>
+      <div class="marquee-pill">📱 iOS 17 &amp; iOS 18 Optimized</div>
+      <div class="marquee-pill">🛡️ Zero-Latency Policy Delivery</div>
+    </div>
+  </div>
+
+  <!-- Core Services & Capabilities -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Core Disciplines</span>
+        <h2 class="section-title">End-to-End iOS Architecture &amp; Ad Monetization</h2>
+        <p class="section-description">Crafting polished iOS user experiences coupled with disciplined ad mediation strategies to maximize lifetime value without compromising app performance.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon-box">📱</div>
+          <h3 class="service-title">iOS Native Development</h3>
+          <p class="service-desc">Architecting robust apps using pure Swift, SwiftUI, and modern concurrency. Optimized for minimal memory footprint, fast launch times, and fluid 120Hz ProMotion displays.</p>
+          <div class="service-tags">
+            <span class="mini-badge">SwiftUI</span>
+            <span class="mini-badge">UIKit</span>
+            <span class="mini-badge">CoreData</span>
+            <span class="mini-badge">Core ML</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon-box">📊</div>
+          <h3 class="service-title">Ad Strategy &amp; Mediation</h3>
+          <p class="service-desc">Complete lifecycle monetization: AdMob open bidding, custom eCPM waterfall setups, frequency capping, and high-impact rewarded video integrations that respect user attention.</p>
+          <div class="service-tags">
+            <span class="mini-badge">AdMob</span>
+            <span class="mini-badge">Mediation</span>
+            <span class="mini-badge">eCPM Lift</span>
+            <span class="mini-badge">Rewarded Ads</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon-box">🛡️</div>
+          <h3 class="service-title">Store &amp; IAB Compliance</h3>
+          <p class="service-desc">App Store Review guidelines navigation, ATT prompt UX optimization, App Privacy Nutrition Labels, and automated root-domain <code>app-ads.txt</code> verification to eliminate revenue loss.</p>
+          <div class="service-tags">
+            <span class="mini-badge">app-ads.txt</span>
+            <span class="mini-badge">ATT</span>
+            <span class="mini-badge">Privacy Labels</span>
+            <span class="mini-badge">CMP</span>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon-box">⚡</div>
+          <h3 class="service-title">Hosting &amp; Legal Architecture</h3>
+          <p class="service-desc">Hosting resilient, zero-cost legal endpoints and landing portals via custom GitHub Pages infrastructures, ensuring crawlers and App Review teams have uninterrupted access.</p>
+          <div class="service-tags">
+            <span class="mini-badge">GitHub.io</span>
+            <span class="mini-badge">HTTPS</span>
+            <span class="mini-badge">Git Versioning</span>
+            <span class="mini-badge">Markdown</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- iOS App Showcase -->
+  <section id="apps">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-title">Featured iOS Applications</h2>
+        <p class="section-description">A selection of native applications developed, published, and monetized with integrated compliance documentation.</p>
+      </div>
+
+      <div class="apps-grid">
+        <!-- App 1 -->
+        <div class="app-card reveal">
+          <div class="app-preview-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #0ea5e9, #38bdf8);">📄</div>
+            <div class="app-meta">
+              <h3>DocScanner Pro AI</h3>
+              <div class="app-category">Productivity &bull; VisionKit</div>
+            </div>
+          </div>
+          <div class="app-body">
+            <p class="app-desc">On-device smart document scanner utilizing Vision framework for automatic perspective correction, OCR text extraction, and seamless PDF export.</p>
+            
+            <div class="app-specs">
+              <div class="spec-item">
+                <span class="spec-title">Monetization</span>
+                <span class="spec-val">AdMob + Sub</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-title">Target OS</span>
+                <span class="spec-val">iOS 16.0+</span>
+              </div>
+            </div>
+
+            <div class="app-links">
+              <a href="/scanner-app/privacy.html" class="app-link-btn">
+                <span>View Privacy Policy</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+              <a href="/scanner-app/terms.html" class="app-link-btn">
+                <span>Terms of Use</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- App 2 -->
+        <div class="app-card reveal">
+          <div class="app-preview-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #10b981, #059669);">📍</div>
+            <div class="app-meta">
+              <h3>GPS Stamp Camera</h3>
+              <div class="app-category">Photography &bull; CoreLocation</div>
+            </div>
+          </div>
+          <div class="app-body">
+            <p class="app-desc">Lightweight field camera embedding live geo-coordinates, timestamps, and custom address watermarks onto captured images without metadata compression.</p>
+            
+            <div class="app-specs">
+              <div class="spec-item">
+                <span class="spec-title">Monetization</span>
+                <span class="spec-val">Rewarded Ads</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-title">Target OS</span>
+                <span class="spec-val">iOS 16.4+</span>
+              </div>
+            </div>
+
+            <div class="app-links">
+              <a href="/camera-app/privacy.html" class="app-link-btn">
+                <span>View Privacy Policy</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+              <a href="/camera-app/terms.html" class="app-link-btn">
+                <span>Terms of Use</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- App 3 -->
+        <div class="app-card reveal">
+          <div class="app-preview-header">
+            <div class="app-icon" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">🛠️</div>
+            <div class="app-meta">
+              <h3>QuickUtility Toolbox</h3>
+              <div class="app-category">Utilities &bull; Native Swift</div>
+            </div>
+          </div>
+          <div class="app-body">
+            <p class="app-desc">An all-in-one minimal utility suite for unit conversions, network ping diagnostics, and secure offline note encryption with biometric FaceID support.</p>
+            
+            <div class="app-specs">
+              <div class="spec-item">
+                <span class="spec-title">Monetization</span>
+                <span class="spec-val">Native Ad Units</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-title">Target OS</span>
+                <span class="spec-val">iOS 17.0+</span>
+              </div>
+            </div>
+
+            <div class="app-links">
+              <a href="/utility-app/privacy.html" class="app-link-btn">
+                <span>View Privacy Policy</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+              <a href="/utility-app/terms.html" class="app-link-btn">
+                <span>Terms of Use</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance & Legal Hub -->
+  <section id="compliance">
+    <div class="container">
+      <div class="compliance-box reveal">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="section-tag">Verification &amp; Governance</span>
+            <h2 style="font-size: 2.2rem; font-weight: 800; color: #fff;">Ad Compliance &amp; Policy Hub</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem;">
+              Store-compliant transparency endpoints hosted directly on GitHub Pages. Ad networks (AdMob, Meta Audience Network) verify authorization at this root domain.
+            </p>
+          </div>
+          <button class="btn btn-secondary" onclick="copyDomain()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy Marketing URL</span>
+          </button>
+        </div>
+
+        <div class="compliance-grid">
+          <div class="compliance-card">
+            <div>
+              <div class="compliance-status">
+                <span class="status-dot"></span> ROOT APP-ADS.TXT VERIFIED
+              </div>
+              <h4 style="font-size: 1.15rem; color: #fff;">Authorized Sellers File</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">Direct access for Google crawler bots to validate publisher credentials.</p>
+              <div class="code-preview">google.com, pub-XXXXXXXXXXXXXXXX, DIRECT...</div>
+            </div>
+            <a href="/app-ads.txt" target="_blank" class="btn btn-secondary" style="justify-content: center; width: 100%;">
+              Open Live app-ads.txt
+            </a>
+          </div>
+
+          <div class="compliance-card">
+            <div>
+              <div class="compliance-status">
+                <span class="status-dot"></span> ENFORCED PRIVACY POLICY
+              </div>
+              <h4 style="font-size: 1.15rem; color: #fff;">App Privacy Disclosures</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">Transparent data collection labels matching App Store Connect declaration standards.</p>
+              <div class="code-preview">Zero data harvesting &bull; Local storage only</div>
+            </div>
+            <a href="/scanner-app/privacy.html" class="btn btn-secondary" style="justify-content: center; width: 100%;">
+              Review Master Policy
+            </a>
+          </div>
+
+          <div class="compliance-card">
+            <div>
+              <div class="compliance-status">
+                <span class="status-dot"></span> APP STORE COMPLIANT
+              </div>
+              <h4 style="font-size: 1.15rem; color: #fff;">Standard EULA / Terms</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">Standard Apple End User License Agreements &amp; intellectual property guidelines.</p>
+              <div class="code-preview">Standard Apple EULA &amp; usage terms</div>
+            </div>
+            <a href="/scanner-app/terms.html" class="btn btn-secondary" style="justify-content: center; width: 100%;">
+              Review Terms of Use
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Surat Studio & Location Section -->
+  <section id="location">
+    <div class="container">
+      <div class="location-wrapper reveal">
+        <div class="location-details">
+          <span class="section-tag">Studio Presence</span>
+          <h3>Based in Surat, Gujarat</h3>
+          <p>
+            Operating from the diamond and textile hub of India, developing applications with a global reach. Available for independent iOS contracts, ad monetization consulting, and app scaling.
+          </p>
+
+          <div class="address-card">
+            <div class="address-pin">📍</div>
+            <div class="address-text">
+              <strong>Darshan Studio / Darshan Patel</strong><br>
+              Surat Tech Hub &bull; Piplod - Adajan Zone<br>
+              Surat, Gujarat, India &ndash; 395007 / 395002<br>
+              <span style="font-size: 0.8rem; color: var(--accent-cyan);">India Standard Time (IST &bull; UTC+5:30)</span>
+            </div>
+          </div>
+
+          <div class="contact-chips">
+            <a href="mailto:darshanpatel.dev@gmail.com" class="contact-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>Email Studio</span>
+            </a>
+            <a href="https://github.com/DarshanPatel-dev" target="_blank" class="contact-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="inquiry-card" id="contact">
+          <h4>Send a Direct Inquiry</h4>
+          <form onsubmit="handleInquiry(event)">
+            <div class="form-group">
+              <input type="text" id="name" class="form-input" placeholder="Your Name or Studio" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" class="form-input" placeholder="Work Email" required>
+            </div>
+            <div class="form-group">
+              <textarea id="message" class="form-input" rows="4" placeholder="App specifications, monetization audit, or consulting request..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Darshan Patel &bull; Darshan Studio</div>
+          <div>Crafted with native Swift precision &bull; Surat, Gujarat, India</div>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="/app-ads.txt">app-ads.txt</a></li>
+          <li><a href="#apps">Applications</a></li>
+          <li><a href="#services">Monetization</a></li>
+          <li><a href="https://github.com/DarshanPatel-dev">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">URL copied to clipboard!</div>
+
+  <!-- JavaScript for Canvas Particles, Marquee Clone, and Scroll Animations -->
+  <script>
+    // Smooth Canvas Particle Grid Background
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(148, 163, 184, ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particleCount = Math.min(Math.floor(window.innerWidth / 15), 65);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    requestAnimationFrame(animateParticles);
+
+    // Scroll Observer for Fade-In Effects
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Clipboard Copy Helper
+    function copyDomain() {
+      const currentUrl = window.location.origin;
+      const tempInput = document.createElement("input");
+      tempInput.value = currentUrl;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+
+      showToast(`Copied Marketing URL: ${currentUrl}`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    // Quick Inquiry Form Submission Handler
+    function handleInquiry(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('message').value;
+
+      const mailtoLink = `mailto:darshanpatel.dev@gmail.com?subject=Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + email)}`;
+      window.location.href = mailtoLink;
+      showToast("Opening your email client...");
+    }
+  </script>
+</body>
+</html>
