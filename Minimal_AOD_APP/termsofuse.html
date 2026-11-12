@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use | Minimal Flip Clock: Desk AOD</title>
+  <meta name="description" content="Terms of Use and End User License Agreement for Minimal Flip Clock: Desk AOD. Conditions regarding subscriptions, always-on display use, advertising, and licensing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #161714;
+      --surface: rgba(38, 40, 36, 0.7);
+      --surface-border: rgba(255, 246, 231, 0.08);
+      --surface-hover: rgba(48, 50, 45, 0.85);
+      --primary: #ff8c3a;
+      --primary-glow: rgba(255, 140, 58, 0.35);
+      --accent: #ff8c3a;
+      --accent-soft: #ffc79c;
+      --text-main: #f5ecdc;
+      --text-muted: #b5ad9f;
+      --text-dim: #7d776c;
+      --card-radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: -1;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .glow-1 {
+      top: -120px;
+      left: -120px;
+      background: var(--primary);
+    }
+    .glow-2 {
+      bottom: 10%;
+      right: -140px;
+      background: #f2a65a;
+      opacity: 0.12;
+    }
+
+    /* Navigation Bar */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(22, 23, 20, 0.82);
+      border-bottom: 1px solid var(--surface-border);
+      z-index: 100;
+      padding: 1.1rem 2rem;
+    }
+    .nav-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-badge {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Policy Container */
+    .container {
+      max-width: 900px;
+      margin: 3.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .doc-header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--surface-border);
+      padding-bottom: 1.8rem;
+    }
+    .app-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px 4px 6px;
+      background: rgba(255, 140, 58, 0.1);
+      border: 1px solid rgba(255, 140, 58, 0.3);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .app-tag-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #2b2c29;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: 0;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 0.8rem;
+    }
+    .effective-date {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Highlight Banner */
+    .summary-box {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .summary-box p {
+      color: var(--text-main);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    /* Policy Body */
+    .terms-content section {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--card-radius);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.8rem;
+      backdrop-filter: blur(16px);
+    }
+    .terms-content h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .terms-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.1rem;
+    }
+    .terms-content p:last-child {
+      margin-bottom: 0;
+    }
+    .terms-content a {
+      color: var(--accent);
+    }
+
+    /* Feature / Data List */
+    .perm-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin: 1.2rem 0;
+    }
+    .perm-item {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.1rem 1.3rem;
+    }
+    .perm-item-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .perm-icon {
+      font-size: 1.2rem;
+    }
+    .perm-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* Lists */
+    ul {
+      list-style-type: disc;
+      padding-left: 1.4rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 0.96rem;
+    }
+    li strong {
+      color: var(--text-main);
+    }
+
+    /* Contact Box */
+    .contact-card {
+      background: rgba(255, 246, 231, 0.03);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      margin-top: 1rem;
+      color: var(--text-muted);
+    }
+    .contact-card strong {
+      color: var(--text-main);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 900px;
+      margin: 4rem auto 0;
+      padding: 2rem 1.5rem 0;
+      border-top: 1px solid var(--surface-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 600px) {
+      .terms-content section {
+        padding: 1.5rem;
+      }
+      header {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <span class="logo-badge"></span>
+        Darshan Patel
+      </a>
+      <a href="/" class="back-link">&larr; Back to Home</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="doc-header">
+      <div class="app-tag"><span class="app-tag-icon">10</span> Minimal Flip Clock: Desk AOD</div>
+      <h1>Terms of Use</h1>
+      <div class="effective-date">Last Updated: November 2026</div>
+    </div>
+
+    <div class="summary-box">
+      <p>
+        <strong>Notice:</strong> By downloading, installing, or using <em>Minimal Flip Clock: Desk AOD</em>, you agree to be bound by these Terms of Use and the Apple Standard End User License Agreement (EULA). If you do not agree with any part of these terms, please stop using the Application.
+      </p>
+    </div>
+
+    <div class="terms-content">
+
+      <!-- Section 1: License -->
+      <section>
+        <h2>1. Scope of License</h2>
+        <p>
+          We grant you a personal, revocable, non-exclusive, non-transferable, limited license to download, install, and use <strong>Minimal Flip Clock: Desk AOD</strong> ("the Application") on iPhone and iPad devices that you own or control, subject to the Apple Media Services Terms and Conditions and these Terms.
+        </p>
+        <p>
+          You agree not to modify, reverse engineer, decompile, disassemble, or extract the source code, clock faces, themes, fonts, backgrounds, or widget designs of the Application. All intellectual property, UI/UX designs, and visual assets remain the exclusive property of the developer.
+        </p>
+      </section>
+
+      <!-- Section 2: Always-on display -->
+      <section>
+        <h2>2. Always-On Display, Battery &amp; Screen Care</h2>
+        <p>
+          The Application is designed to keep your screen awake and display a clock for long periods. By using desk clock mode, you acknowledge the following:
+        </p>
+        <ul>
+          <li><strong>Battery &amp; Heat:</strong> Keeping the display on continuously uses more battery and may cause your device to warm up. We recommend keeping your device connected to a charger during extended use and placing it in a well-ventilated spot.</li>
+          <li><strong>Screen Burn-In:</strong> Devices with OLED displays may be susceptible to image retention or burn-in when static content is displayed for long periods. The Application includes design choices intended to reduce this risk, but we cannot guarantee it will be prevented. You are responsible for choosing appropriate brightness levels and usage durations.</li>
+          <li><strong>Time Accuracy:</strong> The time and date shown are taken from your device's system clock and time zone settings. The Application is intended for convenience and personal use and should not be relied upon for time-critical, safety-critical, medical, or professional purposes.</li>
+          <li><strong>Widgets:</strong> Home Screen widgets are refreshed by iOS according to its own schedule and system limits. Widget content may occasionally be delayed or differ slightly from the in-app clock.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3: In-App Purchases & Subscriptions -->
+      <section>
+        <h2>3. In-App Purchases and Auto-Renewing Subscriptions (Plus)</h2>
+        <p>
+          Certain features of the Application, such as premium themes, clock styles, fonts, live backgrounds, additional customization options, and ad-free usage, may require an active Plus subscription or a one-time in-app purchase.
+        </p>
+        <ul>
+          <li><strong>Payment &amp; Billing:</strong> Payment is charged to your Apple ID account at confirmation of purchase. Billing is managed entirely by Apple Inc. through the App Store.</li>
+          <li><strong>Auto-Renewal:</strong> Subscriptions renew automatically unless auto-renew is turned off at least 24 hours before the end of the current period. Your account will be charged for renewal within 24 hours before the end of the current period at the then-current price.</li>
+          <li><strong>Managing Subscriptions:</strong> You can manage or cancel your subscription at any time in <strong>Settings &gt; your name &gt; Subscriptions</strong> on your device.</li>
+          <li><strong>Free Trials:</strong> If offered, any unused portion of a free trial period is forfeited when you purchase a subscription, where applicable.</li>
+          <li><strong>Restoring Purchases:</strong> You can restore previous purchases on a device signed in with the same Apple ID using the Restore option in the Application.</li>
+          <li><strong>Refunds:</strong> All purchases and refunds are handled solely by Apple under Apple Media Services policies. We do not have access to your payment methods or transaction records.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4: Advertising -->
+      <section>
+        <h2>4. Advertisements &amp; Third-Party Content</h2>
+        <p>
+          The free version of the Application displays advertisements provided by third-party advertising partners, including Google AdMob. Ads may include banner, interstitial, and rewarded formats.
+        </p>
+        <p>
+          We do not endorse, guarantee, or assume liability for third-party products, services, or websites advertised in the Application. Interacting with third-party ads is at your own discretion and risk. For details on how advertising data is handled, please see our <a href="privacy-policy.html">Privacy Policy</a>.
+        </p>
+      </section>
+
+      <!-- Section 5: Disclaimer of Warranties -->
+      <section>
+        <h2>5. Disclaimer of Warranties ("AS IS")</h2>
+        <p>
+          The Application is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis, without warranties or representations of any kind, whether express, statutory, or implied.
+        </p>
+        <p>
+          To the maximum extent permitted by applicable law, we disclaim all warranties, including merchantability, fitness for a particular purpose, non-infringement, uninterrupted operation, and the accuracy of displayed time, date, or widget content.
+        </p>
+      </section>
+
+      <!-- Section 6: Limitation of Liability -->
+      <section>
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          To the extent not prohibited by applicable law, in no event shall the developer be liable for personal injury, property damage, device damage (including battery wear, overheating, or screen burn-in), data loss, missed appointments, lost profits, or any incidental, consequential, or indirect damages arising out of your use of or inability to use the Application, however caused.
+        </p>
+      </section>
+
+      <!-- Section 7: Governing Terms & Apple EULA -->
+      <section>
+        <h2>7. Governing Terms &amp; Apple EULA</h2>
+        <p>
+          These Terms are supplemented by the standard Apple Licensed Application End User License Agreement (EULA) provided by Apple Inc., available at:
+          <br>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">Apple Standard EULA Agreement</a>.
+        </p>
+        <p>
+          In the event of any conflict between these Terms and the Apple Standard EULA, these Terms shall control to the extent of such conflict.
+        </p>
+      </section>
+
+      <!-- Section 8: Changes -->
+      <section>
+        <h2>8. Changes to These Terms</h2>
+        <p>
+          We may update these Terms from time to time to reflect changes in the Application or App Store requirements. Updates will be posted at this URL with a revised "Last Updated" date. Continued use of the Application after changes are posted means you accept the updated Terms.
+        </p>
+      </section>
+
+      <!-- Section 9: Contact -->
+      <section>
+        <h2>9. Contact &amp; Legal Inquiries</h2>
+        <p>
+          For questions, support, or inquiries about these Terms of Use, please contact:
+        </p>
+        <div class="contact-card">
+          <strong>Darshan Patel</strong>
+          Surat, Gujarat, India<br>
+          Email: <a href="mailto:pateldarsh8311@gmail.com">pateldarsh8311@gmail.com</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div>&copy; 2026 Minimal Flip Clock: Desk AOD. All rights reserved.</div>
+    <div>
+      <a href="privacy-policy.html">Privacy Policy</a> &bull;
+      <a href="/">Developer Home</a>
+    </div>
+  </footer>
+
+</body>
+</html>
